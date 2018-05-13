@@ -25,3 +25,13 @@ exports.insert = function (params, callback) {
         callback(err,result);
     });
 };
+
+exports.getinfo = function (Wep_Name, Wep_Infus, callback) {
+    var query = "CALL get_wep_info(?,?)";
+    var queryData = [Wep_Name, Wep_Infus];
+    /*console.log(query);
+    console.log(queryData);*/
+    connection.query(query, queryData, function (err, result) {
+        callback(err,result);
+    });
+};

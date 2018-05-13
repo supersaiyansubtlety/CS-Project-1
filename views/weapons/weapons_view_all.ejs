@@ -4,6 +4,9 @@
     <title>Weapons - All</title>
 </head>
 <style>
+    body{
+        font-family: Calibri, Arial, sans-serif;
+    }
     table, th, td {
         width: 1em;
         min-width: 1em;
@@ -18,17 +21,23 @@
     th {
         text-align: center;
     }
-/*    td{
-        padding:0
-    }*/
     caption{
         text-align: left;
         font-size: 2em;
     }
-    input, input[type = text]{
+    input{
         width: calc(100% - .5em);
         min-width: 4em;
         max-width: 30em;
+    }
+    div.subtext {
+        font-size: .7em;
+        color: dimgray;
+        font-style: italic;
+        font-weight: normal;
+    }
+    caption{
+        font-variant: small-caps;
     }
 </style>
     <body>
@@ -36,8 +45,7 @@
             <table>
                 <caption>Weapons</caption>
                 <tr>
-                    <th rowspan="2">Name</th>
-                    <th rowspan="2">Infusion</th>
+                    <th rowspan="2" style="line-height: 1">Name, Infusion<br><div class="subtext">click to got to weapon page, edit, delete</divsubtext></th>
                     <th rowspan="2">Class</th>
                     <th rowspan="2">Critical<br>Modifier</th>
                     <th rowspan="2">Durability</th>
@@ -59,13 +67,13 @@
                     <th>Faith</th>
                     <th>Strength</th>
                     <th>Dexterity</th>
-                    <th>Intelligenceh</th>
+                    <th>Intelligence</th>
                     <th>Faith</th>
                 </tr>
                 <tr style="vertical-align: top;">
-                    <td><input name="New_Wep_Name" type = "text" placeholder = "New Weapon Name" required></td>
                     <td>
-                        <select name="New_Wep_Infus">
+                        <input name="New_Wep_Name" type = "text" placeholder = "New Weapon Name" style="width: auto; float: left" required>,
+                        <select id = new_wep_infus name="New_Wep_Infus" style="width: auto; float: right">
                             <option value = "Normal">Normal
                             <option disabled>─────</option>
                             <option value = "Raw">Raw
@@ -206,8 +214,11 @@
                 </tr>
                 <% for (var i = 0; i < weapons.length; i++){ %>
                     <tr id="weapon_data">
-                        <td><%= weapons[i].Wep_Name %></td>
-                        <td><%= weapons[i].Wep_Infus %></td>
+                        <td>
+                            <a href="/weapon/?wep_name=<%= weapons[i].Wep_Name %>&wep_infusion=<%= weapons[i].Wep_Infus %>">
+                                <%= weapons[i].Wep_Name %>, <%= weapons[i].Wep_Infus %>
+                            </a>
+                        </td>
                         <td><%= weapons[i].Wep_Class %></td>
                         <td><%= weapons[i].Wep_Crit %></td>
                         <td><%= weapons[i].Wep_Dur %></td>
